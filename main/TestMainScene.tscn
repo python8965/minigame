@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://games/flappy/Flappy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://games/dodge/Dodge.tscn" type="PackedScene" id=2]
+[ext_resource path="res://games/dodge/packedscene/Dot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/script/TestMainSceneScript.cs" type="Script" id=4]
+
+[node name="TestMainScene" type="Node2D"]
+script = ExtResource( 4 )
+games = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), null ]
+
+[node name="StartButton" type="Button" parent="."]
+margin_left = 280.0
+margin_top = 48.0
+margin_right = 456.0
+margin_bottom = 104.0
+text = "To Selected Scene"
+
+[node name="ItemList" type="ItemList" parent="."]
+margin_right = 248.0
+margin_bottom = 192.0
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]

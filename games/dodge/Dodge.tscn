@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://games/dodge/script/Dodge.cs" type="Script" id=1]
+[ext_resource path="res://games/dodge/packedscene/Dot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://games/dodge/script/Player.cs" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 14.25, 15.25 )
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -16, -16, 0, 0, 0, 0, 1040, -16, 0, 0, 0, 0, 1040, 608, 0, 0, 0, 0, -16, 608, 0, 0, 0, 0, -16, -16 )
+}
+
+[node name="DodgeScene" type="Node2D"]
+script = ExtResource( 1 )
+DotScene = ExtResource( 2 )
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2( -100, -100 )
+script = ExtResource( 3 )
+
+[node name="Collision" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 4 )
+
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]
+position = Vector2( -16, 483.413 )
+rotation = -1.5708
+offset = 2859.43
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Popup" type="Popup" parent="."]
+visible = true
+margin_left = 424.0
+margin_top = 232.0
+margin_right = 608.0
+margin_bottom = 336.0
+
+[node name="Panel" type="Panel" parent="Popup"]
+margin_right = 168.0
+margin_bottom = 88.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Popup/Panel"]
+margin_right = 168.0
+margin_bottom = 88.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="Popup/Panel/HBoxContainer"]
+margin_right = 110.0
+margin_bottom = 14.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "game ends in %d"
+
+[node name="Button" type="Button" parent="Popup/Panel/HBoxContainer"]
+margin_top = 68.0
+margin_right = 168.0
+margin_bottom = 88.0
+text = "Go to Main Menu"
+
+[node name="TimeLabel" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 48.0
+margin_bottom = 22.0
+text = "time elapsed : %d"
+
+[connection signal="body_entered" from="Player" to="Player" method="OnPlayerBodyEntered"]
