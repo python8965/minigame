@@ -1,47 +1,62 @@
 using Godot;
+using Godot.Collections;
 using System;
+using Array = Godot.Collections.Array;
+using Time = Godot.Time;
 
-public class Global : SingletonNode<Global>
+public class Global : AutoloadSingletonNode<Global>
 {
-    private Node CurrentScene { get; set; }
-
     public Vector2 ScreenSize => GetViewport().Size;
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
-        Viewport root = GetTree().Root;
-        CurrentScene = root.GetChild(root.GetChildCount() - 1);
+        base._EnterTree();
+    }
+}
+
+class Logger
+{
+    internal enum LogLevel
+    {
+        Verbose,Info,Debug,Error
+    }
+    private const string escape = "0x1b";
+    private const string AnsiColorRed = "\\e[31m";
+    private const string AnisColorReset = "\\e[0m";
+
+    public static void DebugPrint(LogLevel logLevel,params object[] what)
+    {
+        
+        
+        var time = Time.GetTimeStringFromSystem(false);
+
+        var logLevelText = "";
+
+        switch (logLevel)
+        {
+            case LogLevel.Verbose:
+                logLevelText = "VERBOSE";
+                break;
+            case LogLevel.Info:
+                logLevelText = "INFO";
+                break;
+            case LogLevel.Debug:
+                logLevelText = "DEBUG";
+                break;
+            case LogLevel.Error:
+                logLevelText = $"{AnsiColorRed}ERROR{AnisColorReset}";
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
+        }
+        
+
+        GD.Print($"[{logLevelText}] {time} ",what);
     }
     
-    public void GotoScene(string path)
+    public static void DebugPrint(params object[] what)
     {
-        // This function will usually be called from a signal callback,
-        // or some other function from the current scene.
-        // Deleting the current scene at this point is
-        // a bad idea, because it may still be executing code.
-        // This will result in a crash or unexpected behavior.
-
-        // The solution is to defer the load to a later time, when
-        // we can be sure that no code from the current scene is running:
-
-        CallDeferred(nameof(_DeferredGotoScene), path);
-    }
-
-    private void _DeferredGotoScene(string path)
-    {
-        // It is now safe to remove the current scene
-        CurrentScene.Free();
-
-        // Load a new scene.
-        PackedScene nextScene = (PackedScene)GD.Load(path);
-
-        // Instance the new scene.
-        CurrentScene = nextScene.Instance();
-
-        // Add it to the active scene, as child of root.
-        GetTree().Root.AddChild(CurrentScene);
-
-        // Optionally, to make it compatible with the SceneTree.change_scene() API.
-        GetTree().CurrentScene = CurrentScene;
+        var time = Time.GetTimeStringFromSystem(false);
+        GD.Print($"{time} ",what);
     }
 }

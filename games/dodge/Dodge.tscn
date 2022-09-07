@@ -74,3 +74,4 @@ margin_bottom = 22.0
 text = "time elapsed : %d"
 
 [connection signal="body_entered" from="Player" to="Player" method="OnPlayerBodyEntered"]
+[connection signal="pressed" from="Popup/Panel/HBoxContainer/Button" to="." method="OnGameExit"]

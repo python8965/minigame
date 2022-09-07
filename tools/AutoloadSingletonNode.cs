@@ -1,7 +1,7 @@
 ﻿using Godot;
 using System;
 
-public class SingletonNode<T> : Node where T : class//represents autoload singleton in godot.
+public class AutoloadSingletonNode<T> : Node where T : class//represents autoload singleton in godot.
 {
 	private static T _instance = null;
 

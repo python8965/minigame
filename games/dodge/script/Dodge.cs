@@ -15,7 +15,7 @@ public class Dodge : Node2D
     private Player _player;
     private Label _timeLabel;
     private bool _gameEnd = false;
-    private ulong _startTime = Time.GetTicksMsec();
+    private readonly ulong _startTime = Time.GetTicksMsec();
 
     public override void _Ready()
     {
@@ -74,6 +74,11 @@ public class Dodge : Node2D
         GetNode<Popup>("Popup").Popup_();
         
         
+    }
+
+    public void OnGameExit()
+    {
+        Navigator.Instance.PopScene();
     }
 
     public void _on_Timer_timeout()

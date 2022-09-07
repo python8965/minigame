@@ -36,8 +36,7 @@ public class TestMainSceneScript : Node
         if (!_gameList.IsAnythingSelected()) return;
         
         var path = games[_gameList.GetSelectedItems()[0]].ResourcePath;
-
-        GD.Print($"Scene Changing to {path}");
-        Global.Instance.GotoScene(path);
+        
+        Navigator.Instance.GotoScene(path);
     }
 }
