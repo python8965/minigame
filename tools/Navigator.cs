@@ -26,9 +26,8 @@ public class Navigator: AutoloadSingletonNode<Navigator>
             
             return;
         }
-            
-        GotoScene(_sceneQueue.Last());
         _sceneQueue.RemoveAt(_sceneQueue.Count - 1);
+        GotoScene(_sceneQueue.Last());
     }
         
         
@@ -36,7 +35,7 @@ public class Navigator: AutoloadSingletonNode<Navigator>
     public void GotoScene(string path)
     {
         
-        Logger.DebugPrint(Logger.LogLevel.Error,"goto scene {path}");
+        GD.Print($"going {path} , {_sceneQueue.Count}");
         CallDeferred(nameof(_DeferredGotoScene), path);
     }
 
@@ -48,9 +47,10 @@ public class Navigator: AutoloadSingletonNode<Navigator>
         // Load a new scene.
         PackedScene nextScene = (PackedScene)GD.Load(path);
 
+        
         // Instance the new scene.
         _currentScene = nextScene.Instance();
-
+        _sceneQueue.Add(_currentScene.Filename);
         // Add it to the active scene, as child of root.
         GetTree().Root.AddChild(_currentScene);
 

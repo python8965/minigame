@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://games/dodge/script/Dodge.cs" type="Script" id=1]
-[ext_resource path="res://games/dodge/packedscene/Dot.tscn" type="PackedScene" id=2]
-[ext_resource path="res://games/dodge/script/Player.cs" type="Script" id=3]
+[ext_resource path="res://games/dodge/Dodge.cs" type="Script" id=1]
+[ext_resource path="res://games/dodge/entity/Dot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://games/dodge/player/DodgePlayer.cs" type="Script" id=3]
+[ext_resource path="res://games/reuseable/GameEndPopup.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 14.25, 15.25 )
@@ -35,36 +36,7 @@ offset = 2859.43
 wait_time = 0.5
 one_shot = true
 
-[node name="Popup" type="Popup" parent="."]
-visible = true
-margin_left = 424.0
-margin_top = 232.0
-margin_right = 608.0
-margin_bottom = 336.0
-
-[node name="Panel" type="Panel" parent="Popup"]
-margin_right = 168.0
-margin_bottom = 88.0
-
-[node name="HBoxContainer" type="VBoxContainer" parent="Popup/Panel"]
-margin_right = 168.0
-margin_bottom = 88.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
-[node name="Label" type="Label" parent="Popup/Panel/HBoxContainer"]
-margin_right = 110.0
-margin_bottom = 14.0
-size_flags_horizontal = 2
-size_flags_vertical = 2
-text = "game ends in %d"
-
-[node name="Button" type="Button" parent="Popup/Panel/HBoxContainer"]
-margin_top = 68.0
-margin_right = 168.0
-margin_bottom = 88.0
-text = "Go to Main Menu"
+[node name="Popup" parent="." instance=ExtResource( 4 )]
 
 [node name="TimeLabel" type="Label" parent="."]
 margin_left = 8.0
@@ -74,4 +46,4 @@ margin_bottom = 22.0
 text = "time elapsed : %d"
 
 [connection signal="body_entered" from="Player" to="Player" method="OnPlayerBodyEntered"]
-[connection signal="pressed" from="Popup/Panel/HBoxContainer/Button" to="." method="OnGameExit"]
+[connection signal="OnExit" from="Popup" to="." method="OnGameExit"]

@@ -12,17 +12,17 @@ public class Dodge : Node2D
     public PackedScene DotScene;
 
     private Timer _dotSpawnTimer;
-    private Player _player;
+    private DodgePlayer _player;
     private Label _timeLabel;
     private bool _gameEnd = false;
-    private readonly ulong _startTime = Time.GetTicksMsec();
+    private ulong _startTime = Time.GetTicksMsec();
 
     public override void _Ready()
     {
         base._Ready();
         GD.Randomize();
 
-        _player = GetNode<Player>("Player");
+        _player = GetNode<DodgePlayer>("Player");
         _timeLabel = GetNode<Label>("TimeLabel");
 
         _dotSpawnTimer = GetNode<Timer>("Timer");
@@ -71,14 +71,7 @@ public class Dodge : Node2D
 
         GetNode<Label>("Popup/Panel/HBoxContainer/Label").Text =
             $"game ends in {Time.GetTicksMsec() - _startTime}";
-        GetNode<Popup>("Popup").Popup_();
-        
-        
-    }
-
-    public void OnGameExit()
-    {
-        Navigator.Instance.PopScene();
+        GetNode<GameEndPopup>("Popup").Popup_();
     }
 
     public void _on_Timer_timeout()
@@ -86,5 +79,10 @@ public class Dodge : Node2D
         _dotSpawnTimer.WaitTime -= (_dotSpawnTimer.WaitTime / 50);
         spawnDots();
         _dotSpawnTimer.Start();
+    }
+
+    public void OnGameExit()
+    {
+        Navigator.Instance.PopScene();
     }
 }
