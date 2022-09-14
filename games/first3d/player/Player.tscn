@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.7
+
+[sub_resource type="CapsuleMesh" id=6]
+radius = 0.7
+
+[sub_resource type="RayShape" id=7]
+
+[node name="KinematicBody" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+
+[node name="SpringArm" type="SpringArm" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.58579e-09, 0.104911 )
+shape = SubResource( 7 )
+
+[node name="ClippedCamera" type="ClippedCamera" parent="SpringArm"]
+transform = Transform( -5.05578e-08, 0.171431, -0.985196, -1, -8.67757e-08, 3.62179e-08, -7.92822e-08, 0.985196, 0.171431, -1.50781, -7.17501e-08, 1.64145 )
