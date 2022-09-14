@@ -56,6 +56,12 @@ jump={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="ext"
+3d_physics/layer_2="player"
+3d_physics/layer_3="enemy"
+
 [physics]
 
 common/enable_pause_aware_picking=true

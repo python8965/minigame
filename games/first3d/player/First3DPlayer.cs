@@ -4,7 +4,9 @@ using System;
 public class First3DPlayer : KinematicBody
 {
     [Export]
-    public int Speed = 500; 
+    public int Speed = 500;
+
+    public float Gravity = 490f;
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
@@ -26,6 +28,7 @@ public class First3DPlayer : KinematicBody
   public override void _PhysicsProcess(float delta)
   {
       base._PhysicsProcess(delta);
+      GD.Print(_velocity);
       MoveAndSlide(_velocity.Rotated(new Vector3(0,1,0),Rotation.y)*delta);
       RotateY(_rotateVelocity * delta);
   }
@@ -60,6 +63,15 @@ public class First3DPlayer : KinematicBody
       if (_velocity.Length() > 0)
       {
           _velocity = _velocity.Normalized() * Speed;
+      }
+
+      _velocity.y = -Gravity;
+
+      if (@event is InputEventMouseMotion mouseMotion)
+      {
+          GD.Print();
+          
+          RotateY(Mathf.Deg2Rad(-mouseMotion.Relative.x/3));
       }
 
       if (Input.IsKeyPressed((int)KeyList.Q))
