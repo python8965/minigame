@@ -14,8 +14,8 @@ public class Flappy : Node2D
     
     [Signal]
     public delegate void PlayerXChanged();
-    
-    public float _playerX;
+
+    private float _playerX;
 
     private FlappyPlayer _player;
     private ParallaxBackground _background;
@@ -72,9 +72,9 @@ public class Flappy : Node2D
     public void SpawnTimerEnd()
     {
         Random random = new Random();
-        SpawnPillar(random.Next(0,2) == 0, 700);
+        SpawnPillar(random.Next(0,2) == 0, random.Next(500,800));
         
-        _spawnTimer.Start(1.0f);
+        _spawnTimer.Start((float)random.NextDouble()+0.5f);
     }
 
     public void OnPlayerHit()

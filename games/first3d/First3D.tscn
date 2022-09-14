@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2, 0.1, 2 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 4, 0.2, 4 )
+
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.7
+
+[sub_resource type="RayShape" id=5]
+length = 24.478
+
+[sub_resource type="PrismMesh" id=6]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+physics_material_override = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 3 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.93054, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+shape = SubResource( 4 )
+
+[node name="SpringArm" type="SpringArm" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.3678e-08, 0.770462 )
+shape = SubResource( 5 )
+
+[node name="Camera" type="ClippedCamera" parent="KinematicBody/SpringArm"]
+transform = Transform( 0.0848952, 4.35536e-08, -0.99639, -0.99639, -8.37119e-08, -0.0848952, -8.71072e-08, 1, 3.62896e-08, 0, 0, 0 )
+fov = 102.732
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32086, 2.39712, 0 )
+mesh = SubResource( 6 )

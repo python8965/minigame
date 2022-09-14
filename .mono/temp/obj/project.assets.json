@@ -415,19 +415,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pytho\\.nuget\\packages\\": {}
+    "C:\\Users\\dave8\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pytho\\Desktop\\godotProject\\minigame\\minigame.csproj",
+      "projectUniqueName": "C:\\Users\\dave8\\Desktop\\godotProject\\minigame\\minigame.csproj",
       "projectName": "minigame",
-      "projectPath": "C:\\Users\\pytho\\Desktop\\godotProject\\minigame\\minigame.csproj",
-      "packagesPath": "C:\\Users\\pytho\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pytho\\Desktop\\godotProject\\minigame\\.mono\\temp\\obj\\",
+      "projectPath": "C:\\Users\\dave8\\Desktop\\godotProject\\minigame\\minigame.csproj",
+      "packagesPath": "C:\\Users\\dave8\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dave8\\Desktop\\godotProject\\minigame\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pytho\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\dave8\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net472"

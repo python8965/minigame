@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "jFIztyKt46kdH9NRe/WBw91LZHOEuCwB//nMaln96NblNkiUAZx9OywaWZEFASKA+jFuJc4DLDL/Y0xkiaqiUw==",
+  "dgSpecHash": "/EdtVlfx2IUwns6dTGkTaPKSuRh943+uN3ghAmECyRENam0FO8+h/x0kkddREwZHXEQy5RXl/G5DX85vR1DPIA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pytho\\Desktop\\godotProject\\minigame\\minigame.csproj",
+  "projectFilePath": "C:\\Users\\dave8\\Desktop\\godotProject\\minigame\\minigame.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\pytho\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
-    "C:\\Users\\pytho\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.2\\microsoft.netframework.referenceassemblies.net472.1.0.2.nupkg.sha512"
+    "C:\\Users\\dave8\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\dave8\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.2\\microsoft.netframework.referenceassemblies.net472.1.0.2.nupkg.sha512"
   ],
   "logs": []
 }
