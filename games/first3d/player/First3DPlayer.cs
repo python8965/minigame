@@ -16,7 +16,7 @@ public class First3DPlayer : KinematicBody
 
     private SpringArm _springArm;
 
-    
+
     private Vector2 _mouseInputBuffer = Vector2.Zero;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -29,12 +29,13 @@ public class First3DPlayer : KinematicBody
   {
       GD.Print(_springArm.GlobalRotation);
       Vector2 rotation = _mouseInputBuffer / 10;
+      
       _mouseInputBuffer -= rotation;
       
-      Rotate(Vector3.Up,Mathf.Deg2Rad(rotation.x/3) );
+      _springArm.GlobalRotate(Vector3.Up,Mathf.Deg2Rad(rotation.x/3) );
       
       if (_springArm.GlobalRotation.x > MaxRotateY && rotation.y < 0
-          )
+         )
       {
           
       }else if (_springArm.GlobalRotation.x < MinRotateY && rotation.y > 0)
