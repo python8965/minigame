@@ -10,14 +10,17 @@ script = ExtResource( 4 )
 games = [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ), null, null, null, null, null, null, null, null, null, null, null, null ]
 
 [node name="StartButton" type="Button" parent="."]
-margin_left = 280.0
-margin_top = 48.0
-margin_right = 456.0
-margin_bottom = 104.0
+margin_left = 763.0
+margin_top = 144.0
+margin_right = 1305.0
+margin_bottom = 425.0
 text = "To Selected Scene"
 
 [node name="ItemList" type="ItemList" parent="."]
-margin_right = 248.0
-margin_bottom = 192.0
+margin_right = 727.0
+margin_bottom = 704.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+auto_height = true
 
 [connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]

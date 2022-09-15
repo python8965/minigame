@@ -24,6 +24,10 @@ Navigator="*res://global/Navigator.cs"
 window/size/width=1920
 window/size/height=1080
 
+[global]
+
+font=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
