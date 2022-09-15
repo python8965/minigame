@@ -10,7 +10,7 @@ extents = Vector2( 14.25, 15.25 )
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -16, -16, 0, 0, 0, 0, 1040, -16, 0, 0, 0, 0, 1040, 608, 0, 0, 0, 0, -16, 608, 0, 0, 0, 0, -16, -16 )
+"points": PoolVector2Array( 0, 0, 0, 0, -16, -16, 0, 0, 0, 0, 1951, -10, 0, 0, 0, 0, 1944, 1107, 0, 0, 0, 0, -14, 1090, 0, 0, 0, 0, -16, -16 )
 }
 
 [node name="DodgeScene" type="Node2D"]
