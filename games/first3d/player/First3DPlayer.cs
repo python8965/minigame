@@ -15,24 +15,30 @@ public class First3DPlayer : KinematicBody
     private Vector3 _velocity = Vector3.Zero; // The player's movement vector.
 
     private SpringArm _springArm;
+    private CollisionShape _body;
 
 
-    private Vector2 _mouseInputBuffer = Vector2.Zero;
+    private Vector2 _mouseInput = Vector2.Zero;
+    private Vector2 _mouseInputDelayed = Vector2.Zero;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         _springArm = GetNode<SpringArm>("SpringArm");
+        _body = GetNode<CollisionShape>("CollisionShape");
+
+        GetNode<Camera>("SpringArm/Camera").RotateZ(Mathf.Deg2Rad(-90));
     }
 
   // Called every frame. 'delta' is the elapsed time since the previous frame.
   public override void _Process(float delta)
   {
       GD.Print(_springArm.GlobalRotation);
-      Vector2 rotation = _mouseInputBuffer / 10;
+      Vector2 rotation = _mouseInput / 10;
       
-      _mouseInputBuffer -= rotation;
+      _mouseInput -= rotation;
       
       _springArm.GlobalRotate(Vector3.Up,Mathf.Deg2Rad(rotation.x/3) );
+      _body.GlobalRotate(Vector3.Up,Mathf.Deg2Rad(rotation.x/3) );
       
       if (_springArm.GlobalRotation.x > MaxRotateY && rotation.y < 0
          )
@@ -68,22 +74,22 @@ public class First3DPlayer : KinematicBody
 
       if (Input.IsActionPressed("move_right"))
       {
-          _velocity.z += 1;
+          _velocity.x -= 1;
       }
 
       if (Input.IsActionPressed("move_left"))
       {
-          _velocity.z -= 1;
+          _velocity.x += 1;
       }
 
       if (Input.IsActionPressed("move_down"))
       {
-          _velocity.x -= 1;
+          _velocity.z -= 1;
       }
 
       if (Input.IsActionPressed("move_up"))
       {
-          _velocity.x += 1;
+          _velocity.z += 1;
       }
 
       if (_velocity.Length() > 0)
@@ -96,7 +102,7 @@ public class First3DPlayer : KinematicBody
       if (@event is InputEventMouseMotion mouseMotion)
       {
           GD.Print();
-          _mouseInputBuffer += mouseMotion.Relative;
+          _mouseInputDelayed += mouseMotion.Relative;
           
           
       }

@@ -27,16 +27,16 @@ mesh = SubResource( 6 )
 skeleton = NodePath("../..")
 
 [node name="MultiMeshInstance" type="MeshInstance" parent="CollisionShape"]
-transform = Transform( 0.49902, 0, 0, 0, 0.15404, 1.46053e-09, 0, 1.46053e-09, 0.120627, 0.340209, -2.97807e-08, 0.681302 )
+transform = Transform( 0.316416, 0, 0, 0, 1, 3.34238e-08, 0, 3.34238e-08, 0.235352, 0.0086658, -0.876106, 0.396801 )
 mesh = SubResource( 8 )
 
 [node name="SpringArm" type="SpringArm" parent="."]
-transform = Transform( 0.372389, 4.05675e-08, -0.928077, -4.05675e-08, 1, 2.74338e-08, 0.928077, 2.74338e-08, 0.372389, 0, 0, 0.742 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.742 )
 spring_length = 2.0
 margin = 1.0
 
 [node name="Camera" type="Camera" parent="SpringArm"]
-transform = Transform( -4.27652e-08, 0.978354, -0.206939, -1, -5.27571e-08, -4.27653e-08, -5.2757e-08, 0.206939, 0.978354, -0.160585, -1.22894e-07, 2.81149 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.80251e-08, 1.32746 )
 script = ExtResource( 1 )
 
 [node name="Target" type="Spatial" parent="SpringArm"]
@@ -44,3 +44,6 @@ transform = Transform( 1, -3.5527e-15, 2.98023e-08, 4.31414e-16, 1, 0, -2.98023e
 
 [node name="PlayerHead" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.02574e-08, 0.692207 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.7418e-08, 1.31357 )
