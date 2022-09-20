@@ -24,18 +24,22 @@ public class First3DPlayer : KinematicBody
     public override void _Ready()
     {
         _springArm = GetNode<SpringArm>("SpringArm");
-    }
+        _body = GetNode<CollisionShape>("CollisionShape");
 
-  // Called every frame. 'delta' is the elapsed time since the previous frame.
+        Camera cam = GetNode<Camera>("SpringArm/Camera");
+    }
+    
   public override void _Process(float delta)
   {
-      GD.Print(_springArm.GlobalRotation);
-      Vector2 rotation = _mouseInput / 10;
+      GD.Print(_velocity);
+      Vector2 rotation = _mouseInput / 20;
+      Vector2 bodyRotation = _mouseInputDelayed / 10;
       
       _mouseInput -= rotation;
+      _mouseInputDelayed -= bodyRotation;
       
-      _springArm.GlobalRotate(Vector3.Up,Mathf.Deg2Rad(rotation.x/3) );
-      _body.GlobalRotate(Vector3.Up,Mathf.Deg2Rad(rotation.x/3) );
+      _springArm.GlobalRotate(Vector3.Down,Mathf.Deg2Rad(rotation.x/3) );
+      _body.GlobalRotate(Vector3.Down,Mathf.Deg2Rad(bodyRotation.x/3) );
       
       if (_springArm.GlobalRotation.x > MaxRotateY && rotation.y < 0
          )
@@ -56,9 +60,8 @@ public class First3DPlayer : KinematicBody
   public override void _PhysicsProcess(float delta)
   {
       base._PhysicsProcess(delta);
-      MoveAndSlide(_velocity.Rotated(new Vector3(0,1,0),Rotation.y)*delta);
-
-      
+      GD.Print(_velocity);
+      MoveAndSlide(_velocity.Rotated(new Vector3(0,1,0),_body.Rotation.y)*delta);
   }
   
   
@@ -98,10 +101,8 @@ public class First3DPlayer : KinematicBody
 
       if (@event is InputEventMouseMotion mouseMotion)
       {
-          GD.Print();
+          _mouseInput += mouseMotion.Relative;
           _mouseInputDelayed += mouseMotion.Relative;
-          
-          
       }
   }
 }
