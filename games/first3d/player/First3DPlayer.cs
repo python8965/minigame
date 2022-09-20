@@ -60,8 +60,8 @@ public class First3DPlayer : KinematicBody
   public override void _PhysicsProcess(float delta)
   {
       base._PhysicsProcess(delta);
-      GD.Print(_velocity);
-      MoveAndSlide(_velocity.Rotated(new Vector3(0,1,0),_body.Rotation.y)*delta);
+      GD.Print(Mathf.Round(_body.Rotation.y));
+      MoveAndSlide(_velocity.Rotated(Vector3.Up, _body.Rotation.z)*delta);
   }
   
   
@@ -71,7 +71,9 @@ public class First3DPlayer : KinematicBody
       base._UnhandledInput(@event);
         
       _velocity = Vector3.Zero;
-
+      
+      
+      
       if (Input.IsActionPressed("move_right"))
       {
           _velocity.x -= 1;
@@ -96,13 +98,22 @@ public class First3DPlayer : KinematicBody
       {
           _velocity = _velocity.Normalized() * Speed;
       }
-
+      
       _velocity.y = -Gravity;
 
       if (@event is InputEventMouseMotion mouseMotion)
       {
           _mouseInput += mouseMotion.Relative;
           _mouseInputDelayed += mouseMotion.Relative;
+      }else if (@event is InputEventMouseButton mouseButton)
+      {
+          if (mouseButton.ButtonIndex == (int)ButtonList.WheelUp)
+          {
+              _springArm.SpringLength += 0.01f;
+          }else if (mouseButton.ButtonIndex == (int)ButtonList.WheelDown)
+          {
+              _springArm.SpringLength -= 0.01f;
+          }
       }
   }
 }
