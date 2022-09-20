@@ -24,9 +24,6 @@ public class First3DPlayer : KinematicBody
     public override void _Ready()
     {
         _springArm = GetNode<SpringArm>("SpringArm");
-        _body = GetNode<CollisionShape>("CollisionShape");
-
-        GetNode<Camera>("SpringArm/Camera").RotateZ(Mathf.Deg2Rad(-90));
     }
 
   // Called every frame. 'delta' is the elapsed time since the previous frame.
