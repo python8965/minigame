@@ -31,7 +31,6 @@ public class First3DPlayer : KinematicBody
     
   public override void _Process(float delta)
   {
-      GD.Print(_velocity);
       Vector2 rotation = _mouseInput / 20;
       Vector2 bodyRotation = _mouseInputDelayed / 10;
       
@@ -60,7 +59,6 @@ public class First3DPlayer : KinematicBody
   public override void _PhysicsProcess(float delta)
   {
       base._PhysicsProcess(delta);
-      GD.Print(Mathf.Round(_body.Rotation.y));
       MoveAndSlide(_velocity.Rotated(Vector3.Up, _body.Rotation.z)*delta);
   }
   
